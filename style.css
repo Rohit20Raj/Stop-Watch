@@ -1,0 +1,22 @@
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100vh;
+}
+
+.container{
+    border: 2px solid black;
+    height: 300px;
+    width: 356px;
+}
+
+.timer{
+    font-size: 7rem;
+}
+
+.controls{
+    height: 80px;
+    width: 90px;
+}
