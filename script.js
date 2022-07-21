@@ -10,7 +10,7 @@ function startOrStop() {
             if (msec == 99) {
                 seconds++;
             }
-            if (seconds == 59 && msec == 99) {
+            if (seconds == 59 && msec == 0) {
                 minutes++;
             }
             if (minutes == 59 && seconds == 59 && msec == 99) {
@@ -38,11 +38,13 @@ function startOrStop() {
             }
             hour.innerText = hours;
             watchRunning = true;
+            playOrPause.innerHTML = '<img src="images/pause-button.png">'
         }, 10);
     }
     else {
         clearInterval(stopWatch);
         watchRunning = false;
+        playOrPause.innerHTML = '<img src="images/play-button-arrowhead.png">';
     }
 }
 
@@ -53,6 +55,7 @@ function resetWatch() {
     second.innerText = "00";
     minute.innerText = "00";
     hour.innerText = "0";
+    playOrPause.innerHTML = '<img src="images/play-button-arrowhead.png">';
 }
 
 var hours = 0, minutes = 0, seconds = 0, msec = 0, watchRunning = false, stopWatch;

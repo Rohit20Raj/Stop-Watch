@@ -8,10 +8,15 @@ body{
     align-items: center;
     text-align: center;
     height: 100vh;
-    background-image: url(https://wallpaperaccess.com/full/2092058.jpg);
+    background-image: url(https://wallpaperaccess.com/full/1619771.jpg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+}
+
+img{
+    height: 60px;
+    /* z-index: -1; */
 }
 
 .container{
@@ -28,12 +33,30 @@ body{
 }
 
 .controls{
-    border-radius: 5px;
+    border-radius: 80px;
     height: 80px;
     margin: 15px;
     width: 90px;
 }
 
+#reset{
+    background-color: rgba(255, 0, 0);
+    transition: 0s 0.1s;
+}
+#play{
+    background-color: blue;
+    transition: 0s 0.1s;
+}
+#play:active{
+    background-color: green;
+    transition: 0s;
+}
+#reset:active{
+    background-color: rgba(255, 0, 0, 0.459);
+    transition: 0s;
+}
+
 #ms{
     font-size: 3.5rem;
+    color: red;
 }
