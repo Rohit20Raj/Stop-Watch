@@ -1,58 +1,57 @@
-var seconds = 0, minutes = 0, hours = 0, stopwatchRunning, i = 1;
-var second = document.querySelector("#seconds");
-var minute = document.querySelector("#minutes");
-
-function startorstop() {
-    if (i % 2 == 1) {
-        stopwatchRunning = setInterval(() => {
-            seconds++;
-            seconds = seconds % 60;
-            if (seconds == 0) {
-                minutes++;
+function startOrStop() {
+    if (watchRunning == false) {
+        stopWatch = setInterval(() => {
+            seconds = seconds + 0.01;
+            seconds = seconds%60;
+            minutes = minutes%60;
+            if (seconds.toFixed(2) == 59.99) {
+                // seconds = 0;
+                minutes = minutes + 1;
             }
-            if (seconds > 9) {
-                second.innerText = seconds;
-            }
-            else {
-                second.innerText = "0" + seconds;
+            if (minutes == 59 && seconds.toFixed(2) == 59.99) {
+                // minutes = 0;
+                hours++;
             }
 
-            if (minutes > 9) {
+            if(seconds < 10){
+                second.innerText = "0"+seconds.toFixed(2);
+            }
+            else{
+                second.innerText = seconds.toFixed(2);
+            }
+            if(minutes < 10){
+                minute.innerText = "0"+minutes;
+            }
+            else{
                 minute.innerText = minutes;
             }
-            else {
-                minute.innerText = "0" + minutes;
-            }
-
-        }, 1000);
+            hour.innerText = hours;
+            watchRunning = true;
+            console.log(seconds.toFixed(2));
+        }, 10);
     }
     else {
-        clearInterval(stopwatchRunning);
-        if (seconds < 10) {
-            second.innerText = "0" + seconds;
-        }
-        else {
-            second.innerText = seconds;
-        }
-        if (minutes < 10) {
-            minute.innerText = "0" + minutes;
-        }
-        else {
-            minute.innerText = minutes;
-        }
+        clearInterval(stopWatch);
+        watchRunning = false;
     }
-    i++;
 }
 
-function resetStopwatch() {
-    seconds = 0, minutes = 0;
-    clearInterval(stopwatchRunning);
-    document.querySelector("#seconds").innerText = "00";
-    document.querySelector("#minutes").innerText = "00";
+function resetWatch(){
+    clearInterval(stopWatch);
+    hours = 0, minutes = 0, seconds = 0, watchRunning = false;
+    second.innerText = "00.00";
+    minute.innerText = "00";
+    hour.innerText = "0";
 }
 
-var start = document.querySelector("#start");
+var hours = 0, minutes = 0, seconds = 0, watchRunning = false, stopWatch;
+
+var second = document.querySelector("#seconds");
+var minute = document.querySelector("#minutes");
+var hour = document.querySelector("#hours");
+
+var playOrPause = document.querySelector("#play");
 var reset = document.querySelector("#reset");
 
-start.addEventListener('click', startorstop);
-reset.addEventListener('click', resetStopwatch);
+playOrPause.addEventListener("click", startOrStop);
+reset.addEventListener("click", resetWatch);
