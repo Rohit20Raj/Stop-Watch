@@ -1,33 +1,43 @@
 function startOrStop() {
     if (watchRunning == false) {
         stopWatch = setInterval(() => {
-            seconds = seconds + 0.01;
-            seconds = seconds%60;
-            minutes = minutes%60;
-            if (seconds.toFixed(2) == 59.99) {
-                // seconds = 0;
-                minutes = minutes + 1;
+
+            msec++;
+            msec = msec % 100;
+            seconds = seconds % 60;
+            minutes = minutes % 60;
+
+            if (msec == 99) {
+                seconds++;
             }
-            if (minutes == 59 && seconds.toFixed(2) == 59.99) {
-                // minutes = 0;
+            if (seconds == 59 && msec == 99) {
+                minutes++;
+            }
+            if (minutes == 59 && seconds == 59 && msec == 99) {
                 hours++;
             }
 
-            if(seconds < 10){
-                second.innerText = "0"+seconds.toFixed(2);
+            if (msec < 10) {
+                ms.innerText = "0" + msec;
             }
-            else{
-                second.innerText = seconds.toFixed(2);
+            else {
+                ms.innerText = msec;
             }
-            if(minutes < 10){
-                minute.innerText = "0"+minutes;
+
+            if (seconds < 10) {
+                second.innerText = "0" + seconds;
             }
-            else{
+            else {
+                second.innerText = seconds;
+            }
+            if (minutes < 10) {
+                minute.innerText = "0" + minutes;
+            }
+            else {
                 minute.innerText = minutes;
             }
             hour.innerText = hours;
             watchRunning = true;
-            console.log(seconds.toFixed(2));
         }, 10);
     }
     else {
@@ -36,16 +46,18 @@ function startOrStop() {
     }
 }
 
-function resetWatch(){
+function resetWatch() {
     clearInterval(stopWatch);
-    hours = 0, minutes = 0, seconds = 0, watchRunning = false;
-    second.innerText = "00.00";
+    hours = 0, minutes = 0, seconds = 0, msec = 0, watchRunning = false;
+    ms.innerText = "00";
+    second.innerText = "00";
     minute.innerText = "00";
     hour.innerText = "0";
 }
 
-var hours = 0, minutes = 0, seconds = 0, watchRunning = false, stopWatch;
+var hours = 0, minutes = 0, seconds = 0, msec = 0, watchRunning = false, stopWatch;
 
+var ms = document.querySelector("#ms");
 var second = document.querySelector("#seconds");
 var minute = document.querySelector("#minutes");
 var hour = document.querySelector("#hours");

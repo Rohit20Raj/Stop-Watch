@@ -8,10 +8,17 @@ body{
     align-items: center;
     text-align: center;
     height: 100vh;
+    background-image: url(https://wallpaperaccess.com/full/2092058.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 }
 
 .container{
+    background-color: rgba(255, 255, 255, 0.708);
     border: 2px solid black;
+    border-radius: 20px;
+    box-shadow: 0 0 10px;
     height:fit-content;
     width: 356px;
 }
@@ -21,6 +28,12 @@ body{
 }
 
 .controls{
+    border-radius: 5px;
     height: 80px;
+    margin: 15px;
     width: 90px;
+}
+
+#ms{
+    font-size: 3.5rem;
 }
